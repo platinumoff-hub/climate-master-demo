@@ -5,12 +5,12 @@
 <meta name="robots" content="noindex, nofollow" data-publish>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Климат-Мастер · установка кондиционеров</title>
-<meta name="description" content="Установка и обслуживание кондиционеров с выездом на дом в Калининграде: интервал приезда и цена на типовую работу до выезда, стандартные материалы с собой, гарантия на работу письменно.">
+<meta name="description" content="Установка и обслуживание кондиционеров с выездом на дом {{в_городе}}: интервал приезда и цена на типовую работу до выезда, стандартные материалы с собой, гарантия на работу письменно.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="Климат-Мастер">
 <meta property="og:title" content="Климат-Мастер · установка кондиционеров">
-<meta property="og:description" content="Кондиционеры на дом в Калининграде: напишите модель и комнату, пришлите фото. Ответим интервалом приезда и ценой монтажа до выезда.">
+<meta property="og:description" content="Кондиционеры на дом {{в_городе}}: напишите модель и комнату, пришлите фото. Ответим интервалом приезда и ценой монтажа до выезда.">
 <meta property="og:url" content="https://example.com">
 <meta property="og:image" content="https://example.com/assets/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -24,7 +24,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect x=%274%27 y=%274%27 width=%2724%27 height=%2724%27 rx=%277%27 fill=%27%236cc7e6%27/%3E%3Crect x=%2714%27 y=%279%27 width=%274%27 height=%2714%27 rx=%272%27 fill=%27%23171b20%27/%3E%3C/svg%3E">
 <link rel="stylesheet" href="vibe.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Климат-Мастер","description":"Установка и обслуживание кондиционеров на дом: интервал приезда и цена до выезда, стандартные материалы с собой, гарантия на работу письменно.","url":"https://example.com","image":"https://example.com/assets/og.jpg","telephone":"+70000000000","openingHours":"Mo-Su 08:00-21:00","areaServed":"Калининград","address":{"@type":"PostalAddress","streetAddress":"ул. Примерная, 12","addressLocality":"Калининград","addressCountry":"RU"},"priceRange":"от 1500 ₽"}
+{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Климат-Мастер","description":"Установка и обслуживание кондиционеров на дом: интервал приезда и цена до выезда, стандартные материалы с собой, гарантия на работу письменно.","url":"https://example.com","image":"https://example.com/assets/og.jpg","telephone":"+70000000000","openingHours":"Mo-Su 08:00-21:00","areaServed":"{{город}}","address":{"@type":"PostalAddress","streetAddress":"ул. Примерная, 12","addressLocality":"{{город}}","addressCountry":"RU"},"priceRange":"от 1500 ₽"}
 </script>
 <style>
   /* ---- тема: шесть цветов, два шрифта --------------------------------- */
@@ -266,6 +266,26 @@
   .track { padding-bottom: calc(.75rem + env(safe-area-inset-bottom, 0px)); }
   .close { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)); }
   @media (max-width: 860px) { .hero__tag { top: calc(4.6rem + env(safe-area-inset-top, 0px)); } }
+  /* телефон в портрете: фото начинается ниже плашек «Установка» и «Обслуживание», чтобы они не закрывали людей на картинках;
+     нижний край фото остаётся там же, где был (48svh + 24px), поэтому высота уменьшена на величину сдвига */
+  @media (max-width: 860px) and (orientation: portrait) {
+    /* плашки стоят на тёмном фоне, поэтому им нужен свой вид: серый градиент, светлая рамка, блик сверху и тень (объём) */
+    .hero__tag { background: linear-gradient(180deg, #343c46 0%, #262c34 100%); border: 1px solid rgb(255 255 255 / .18);
+      box-shadow: inset 0 1px 0 rgb(255 255 255 / .16), 0 6px 14px rgb(0 0 0 / .5), 0 1px 3px rgb(0 0 0 / .6); }
+    /* текст опускаем ближе к низу экрана (но выше нижней полосы iPhone) */
+    .hero__copy { bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px)); }
+    /* низ фото = верх текста (--copy-top считает скрипт); не ниже 12rem, чтобы фото не превратилось в полоску */
+    .hero__half img { top: calc(7.2rem + env(safe-area-inset-top, 0px));
+      height: max(12rem, calc(var(--copy-top, calc(48svh + 24px)) - 7.2rem - env(safe-area-inset-top, 0px))); }
+  }
+  /* узкий телефон в портрете: текст компактнее, чтобы он целиком помещался под фото (кнопки 44 px и текст от 16 px остаются) */
+  @media (max-width: 400px) and (orientation: portrait) {
+    .hero__label { margin-bottom: var(--v-2); }
+    .hero__copy .v-display { font-size: 1.75rem; }
+    .hero__copy .v-lede { margin-top: var(--v-3); line-height: 1.4; }
+    .hero__cta { margin-top: var(--v-4); gap: 0 var(--v-4); }
+    .consent-note { margin-top: var(--v-2); line-height: 1.35; }
+  }
 
   /* ---- ФЗ-152: ссылка на политику рядом с кнопкой, уведомление о cookie ---------- */
   .consent-note { margin-top: var(--v-3); font-size: 1rem; line-height: 1.45; color: var(--v-ink-soft); max-width: 44ch; }
@@ -357,7 +377,7 @@
 
         <div class="v-copy v-copy--lead hero__copy" data-v-cue="0 0.82 0">
           <span class="v-label hero__label">Монтаж, чистка, заправка, ремонт · выезд на дом</span>
-          <h1 class="v-display v-display--xl" data-v-kinetic="lines">Установка кондиционеров в Калининграде – цена до приезда</h1>
+          <h1 class="v-display v-display--xl" data-v-kinetic="lines">Установка кондиционеров {{в_городе}} – цена до приезда</h1>
           <p class="v-lede">Жарко или старый кондиционер не холодит? Напишите модель и комнату, пришлите фото – ответим интервалом приезда и ценой на типовую работу. Материалы с собой.</p>
           <div class="hero__cta">
             <a class="v-btn" href="https://t.me/example_master" rel="noopener">Вызвать мастера</a>
@@ -520,11 +540,11 @@
             <span><b>Принимаем вызовы</b>08:00–21:00 без выходных</span>
             <span><b>Интервал приезда</b>в течение 2 часов</span>
             <span><b>Выезжаем</b>весь город и 20 км вокруг</span>
-            <span data-slot-optional><b>Адрес</b>ул. Примерная, 12, Калининград</span>
+            <span data-slot-optional><b>Адрес</b>ул. Примерная, 12, {{город}}</span>
           </div>
         </div>
         <footer class="foot">
-          <span>Климат-Мастер · Калининград</span>
+          <span>Климат-Мастер · {{город}}</span>
           <span data-slot-optional>ИП Фамилия И. О. (пример) · ИНН 000000000000</span>
           <a href="policy.html">Политика обработки персональных данных</a>
           <span class="foot__more">Установка, чистка, заправка и ремонт кондиционеров с выездом на дом</span>
@@ -571,6 +591,20 @@
     document.getElementById('kak').setAttribute('data-v-span', '2.2');
   }
   Vibe.mount(document.querySelector('.v-page'));
+
+  // Телефон в портрете: нижний край фото = верх блока текста, чтобы текст не лежал на картинке.
+  // Считаем по реальному положению текста (он разной высоты на разных экранах), CSS читает --copy-top.
+  (function () {
+    var copy = document.querySelector('#top .hero__copy'), root = document.documentElement;
+    function sync() { root.style.setProperty('--copy-top', copy.offsetTop + 'px'); }
+    sync();
+    window.addEventListener('resize', sync);
+    window.addEventListener('orientationchange', sync);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(sync);
+    window.addEventListener('load', sync);
+    // страховка: пересчёт при любом изменении размера окна или самого текста (адресная строка, поворот, шрифты)
+    if (window.ResizeObserver) { var ro = new ResizeObserver(sync); ro.observe(root); ro.observe(copy); }
+  })();
 
   // Шапка: подложка после 40 px прокрутки, чтобы текст секций не просвечивал.
   (function () {
